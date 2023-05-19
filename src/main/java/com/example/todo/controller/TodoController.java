@@ -21,13 +21,12 @@ public class TodoController {
 
 
     @PostMapping("/add-todo")
-    public void addTodo(@RequestBody Todo todo) {
-        todoService.addTodo(todo);
+    public Todo addTodo(@RequestBody Todo todo) {
+        return todoService.addTodo(todo);
     }
 
 
-    @GetMapping("/find-todo/id/{id}")
-    //@RequestMapping(value="/find-todo/id/{id}")
+    @GetMapping("/findById/{id}")
     public Todo findTodoById(@PathVariable int id) {
         return todoService.findById(id);
     }
@@ -38,15 +37,15 @@ public class TodoController {
         return todoService.findAll();
     }
 
-    @PutMapping("update-todo/id/{id}")
-    public void updateTodo(@PathVariable int id,@RequestBody Todo todo) {
-        todoService.updateTodo(id,todo);
+    @PutMapping("update-todo/{id}")
+    public String updateTodo(@PathVariable int id,@RequestBody Todo todo) {
+       return todoService.updateTodo(id,todo);
     }
 
 
-    @DeleteMapping("delete-todo/id/{id}")
-    public void deleteTodo(@PathVariable int id) {
-        todoService.deleteTodo(id);
+    @DeleteMapping("deleteById/{id}")
+    public String deleteTodo(@PathVariable int id) {
+        return todoService.deleteTodo(id);
     }
 
 }
